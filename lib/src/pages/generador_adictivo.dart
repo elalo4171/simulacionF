@@ -96,8 +96,10 @@ class _AdictivoState extends State<Adictivo> {
                           borderRadius: BorderRadius.circular(18.0),
                         ),
                         onPressed: () {
-                          generador.generarAdictivo(
-                              _semillas, _modulo, _cantidad_semillas);
+                          generador.numerosAleatoriosAdictivo =
+                              generador.generarAdictivo(
+                                  _semillas, _modulo, _cantidad_semillas);
+                          generador.metodoSeleccionado = 1;
                           _semillas = [];
                           _modulo = 0;
                           _cantidad_semillas = 0;

@@ -6,14 +6,30 @@ import 'package:flutter/material.dart';
 
 class  GeneradorAleatorios with ChangeNotifier{
 
+
+// ----------------------------------------------------------------------------------------------------------
+  int _metodoSeleccionado=0;
+
+  set metodoSeleccionado(int numero){
+    _metodoSeleccionado=numero;
+    notifyListeners();
+  }
+
+  int get metodoSeleccionado=>_metodoSeleccionado;
+
+// ----------------------------------------------------------------------------------------------------------
+
+
   List<double> _aleatoriosAdictivo=[];
 
-  get numerosAleatorios=> _aleatoriosAdictivo;
+  get numerosAleatoriosAdictivo=> _aleatoriosAdictivo;
 
-  set numerosAleatorios(List numeros){
+  set numerosAleatoriosAdictivo(List numeros){
     _aleatoriosAdictivo=numeros;
     notifyListeners();
   }
+
+// ----------------------------------------------------------------------------------------------------------
 
   generarAdictivo(List<double> semillas, int modulo, int numero_semillas){
     if(semillas.length<=2){
@@ -33,6 +49,8 @@ class  GeneradorAleatorios with ChangeNotifier{
     }
     return semillasTemporales;
   }
+
+// ----------------------------------------------------------------------------------------------------------
 
 
 }
