@@ -38,6 +38,7 @@ class _ShowNumerosState extends State<ShowNumeros> {
   @override
   Widget build(BuildContext context) {
     final _generador = Provider.of<GeneradorAleatorios>(context);
+    
     queMetodo(_generador);
 
     return Scaffold(
