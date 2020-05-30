@@ -48,7 +48,7 @@ class GeneradorAleatorios with ChangeNotifier {
 
 // ----------------------------------------------------------------------------------------------------------
 
-//Metodo para saber la repeticion de numeros generados
+//Metodo para saber el periodo de repeticion de numeros generados aleatorios
 
   int repeticion(List numeros) {
     int veces = 0;
@@ -58,7 +58,7 @@ class GeneradorAleatorios with ChangeNotifier {
           veces++;
         }
       if (veces==2) 
-      return j;
+      return j-i;
       }
     }
     return 0;

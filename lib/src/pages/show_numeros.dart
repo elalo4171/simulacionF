@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:simulacion/src/providers/generacion_provider.dart';
 import 'package:simulacion/src/widgets/tittle_widget.dart';
+import 'package:simulacion/src/utility/responsive.dart';
 
 class ShowNumeros extends StatefulWidget {
   const ShowNumeros({Key key}) : super(key: key);
@@ -11,44 +12,98 @@ class ShowNumeros extends StatefulWidget {
 }
 
 class _ShowNumerosState extends State<ShowNumeros> {
-
   String _metodo;
   List<double> _numerosGenerados;
-
+  String _periodo;
   @override
-  void initState() { 
-    _numerosGenerados=[];
-    _metodo="";
+  void initState() {
+    _numerosGenerados = [];
+    _metodo = "";
+    _periodo = "";
     super.initState();
-    
   }
 
-  queMetodo(GeneradorAleatorios info){
+  queMetodo(GeneradorAleatorios info) {
     switch (info.metodoSeleccionado) {
-      case 1: 
-        _metodo="Metodo adictivo";
-        _numerosGenerados=info.numerosAleatoriosAdictivo;
+      case 1:
+        _metodo = "Metodo adictivo";
+        _numerosGenerados = info.numerosAleatoriosAdictivo;
+        _periodo = info.repeticion(info.numerosAleatoriosAdictivo).toString();
         setState(() {});
         break;
       default:
     }
-
   }
 
   @override
   Widget build(BuildContext context) {
     final _generador = Provider.of<GeneradorAleatorios>(context);
-    
+    Responsive _responsive = new Responsive(context);
     queMetodo(_generador);
 
     return Scaffold(
       body: SafeArea(
-              child: Stack(
+        child: Stack(
           children: <Widget>[
-            Column(
-              children: <Widget>[
-                tittle("Numeros Generados", _metodo)
-              ],
+            Container(
+              width: _responsive.width,
+              child: Column(
+                children: <Widget>[
+                  SizedBox(
+                    height: _responsive.height * .02,
+                  ),
+                  tittle("Numeros Generados", _metodo,
+                      TextStyle(fontSize: _responsive.ip * .035), _responsive),
+                  ListTile(
+                    title: Text("Periodo de repeticion"),
+                    subtitle: Text(_periodo),
+                  ),
+                  Center(
+                    child: Text("Numeros:"),
+                  ),
+                  Center(
+                      child: Container(
+                          width: _responsive.width,
+                          height: _responsive.height * .6,
+                          child: ListView.builder(
+                            itemCount: _numerosGenerados.length,
+                            itemBuilder: (context, index) {
+                              return Center(
+                                  child: Text(
+                                      _numerosGenerados[index].toString()));
+                            },
+                          ))),
+                  SizedBox(
+                    height: _responsive.height * .02,
+                  ),
+                  Container(
+                    width: _responsive.width,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: <Widget>[
+                        RaisedButton(
+                          child: Text("Guardar Numeros", style: TextStyle(color: Colors.black),),
+                          color: Colors.white,
+                          onPressed: () {},
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(18.0),
+                          ),
+                        ),
+                        RaisedButton(
+                          child: Text("Generar otros numeros", style: TextStyle(color: Colors.black),),
+                          color: Colors.white,
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(18.0),
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
             )
           ],
         ),
