@@ -108,7 +108,7 @@ class _AdictivoState extends State<Adictivo> {
                           _controllerSemillas.clear();
                           _editCantidad = true;
                           _editModulo = true;
-                          setState(() {});
+                          Navigator.pushNamed(context, 'ver');
                         },
                       )
                     ],

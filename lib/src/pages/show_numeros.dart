@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:simulacion/src/providers/generacion_provider.dart';
 import 'package:simulacion/src/widgets/tittle_widget.dart';
 
@@ -36,15 +37,20 @@ class _ShowNumerosState extends State<ShowNumeros> {
 
   @override
   Widget build(BuildContext context) {
+    final _generador = Provider.of<GeneradorAleatorios>(context);
+    queMetodo(_generador);
+
     return Scaffold(
-      body: Stack(
-        children: <Widget>[
-          Column(
-            children: <Widget>[
-              tittle("Numeros Generados", _metodo)
-            ],
-          )
-        ],
+      body: SafeArea(
+              child: Stack(
+          children: <Widget>[
+            Column(
+              children: <Widget>[
+                tittle("Numeros Generados", _metodo)
+              ],
+            )
+          ],
+        ),
       ),
     );
   }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:simulacion/src/pages/generador_adictivo.dart';
 import 'package:simulacion/src/pages/home_page.dart';
 import 'package:provider/provider.dart';
+import 'package:simulacion/src/pages/show_numeros.dart';
 import 'package:simulacion/src/providers/generacion_provider.dart';
 import 'package:simulacion/src/theme/tema.dart';
 
@@ -20,7 +21,8 @@ class MyApp extends StatelessWidget {
         title: 'Material App',
         routes: {
           'home':(BuildContext context)=>HomePage(),
-          'adictivo':(BuildContext context)=>Adictivo()
+          'ver':(BuildContext context)=>ShowNumeros(),
+          'adictivo':(BuildContext context)=>Adictivo(),
         },
         initialRoute: 'adictivo',
         theme: miTema,
