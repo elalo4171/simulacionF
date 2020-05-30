@@ -13,24 +13,26 @@ class Adictivo extends StatefulWidget {
 
 class _AdictivoState extends State<Adictivo> {
   TextEditingController _controllerSemillas;
+  TextEditingController _controllerModulo;
   List<double> _semillas;
   int _modulo;
   int _numero_semilla;
-
+  bool _editModulo;
   @override
   void initState() {
-    // TODO: implement initState
+    _editModulo = true;
     _controllerSemillas = new TextEditingController();
+    _controllerModulo = new TextEditingController();
     _semillas = [];
     _modulo = 100;
     _numero_semilla = 100;
     super.initState();
   }
 
-  String generarSemillasTexto(List semillas){
-    String texto="";
+  String generarSemillasTexto(List semillas) {
+    String texto = "";
     for (var item in semillas) {
-      texto=texto+" , "+item.toString();
+      texto = texto + " , " + item.toString();
     }
     return texto;
   }
@@ -66,12 +68,13 @@ class _AdictivoState extends State<Adictivo> {
                   height: _responsive.height * .87,
                   child: Column(
                     children: <Widget>[
-                      Divider(),
+                      SizedBox(height: _responsive.height*.03,),
                       ingresarSemillas(),
-                      SizedBox(
-                        height: _responsive.height * .03,
-                      ),
-                      showSemillas()
+                      Divider(height: _responsive.height*.03,),
+                      showSemillas(),
+                      Divider(height: _responsive.height*.03,),
+                      ingresarModulo(),
+                      Divider(height: _responsive.height*.03,),
                     ],
                   ),
                 )
@@ -83,12 +86,48 @@ class _AdictivoState extends State<Adictivo> {
     );
   }
 
+  ListTile ingresarModulo() {
+    return ListTile(
+      title: Text("Ingresa el modulo  ( Multiplo de 2 )"),
+      subtitle: TextField(
+        enabled: _editModulo,
+        controller: _controllerModulo,
+        keyboardType: TextInputType.number,
+        inputFormatters: <TextInputFormatter>[
+          WhitelistingTextInputFormatter.digitsOnly
+        ],
+      ),
+      trailing: IconButton(
+          icon: Icon(
+            _editModulo ? Icons.add : Icons.edit,
+            color: Colors.white,
+          ),
+          onPressed: _editModulo
+              ? () {
+                  _editModulo = false;
+                  setState(() {});
+                }
+              : () {
+                  _editModulo = true;
+                  setState(() {});
+                }),
+    );
+  }
+
   ListTile showSemillas() {
     return ListTile(
-                      title: Text("Semillas ingresadas"),
-                      subtitle: Text(generarSemillasTexto(_semillas)),
-                      trailing: IconButton(icon: Icon(Icons.clear, color: Colors.white,), onPressed: null),
-                    );
+      title: Text("Semillas ingresadas"),
+      subtitle: Text(generarSemillasTexto(_semillas)),
+      trailing: IconButton(
+          icon: Icon(
+            Icons.clear,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            _semillas = [];
+            setState(() {});
+          }),
+    );
   }
 
   ListTile ingresarSemillas() {
@@ -106,9 +145,7 @@ class _AdictivoState extends State<Adictivo> {
           onPressed: () {
             _semillas.add(double.parse(_controllerSemillas.value.text));
             _controllerSemillas.clear();
-            setState(() {
-              
-            });
+            setState(() {});
           }),
     );
   }
