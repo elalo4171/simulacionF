@@ -8,18 +8,19 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     Responsive _responsive = new Responsive(context);
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Simulacion"),
-        centerTitle: true,
-      ),
       body: Stack(
         children: <Widget>[
           ListView(
             children: <Widget>[
+              Container(
+                padding:
+                    EdgeInsets.symmetric(vertical: _responsive.height * .03, horizontal: _responsive.width*.02),
+                child: Text("Simulacion", style: TextStyle(fontSize: _responsive.ip*.033, fontWeight: FontWeight.w600),),
+              ),
               SizedBox(
                 height: _responsive.height * .02,
               ),
-              subtitle("Metodo de generacion de numeros pseudoaleatorios",
+              subtitle("Metodos de generacion de numeros pseudoaleatorios",
                   _responsive),
               Container(
                 padding:
