@@ -27,9 +27,9 @@ class HomePage extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
-                    cardCustom("HOla", "ESTE ES EL CONTENIDO", 'paas', Colors.cyan, _responsive),
-                    cardCustom("HOla", "ESTE ES EL CONTENIDO", 'paas', Colors.cyan, _responsive),
-                    cardCustom("HOla", "ESTE ES EL CONTENIDO", 'paas', Colors.cyan, _responsive),
+                    cardCustom("Multiplicativo", "ESTE ES EL CONTENIDO", 'paas', Colors.cyan, _responsive),
+                    cardCustom("Adictivo", "ESTE ES EL CONTENIDO", 'paas', Colors.cyan, _responsive),
+                    cardCustom("Mixto", "ESTE ES EL CONTENIDO", 'paas', Colors.cyan, _responsive),
                   ],
                 ),
               )
@@ -43,7 +43,7 @@ class HomePage extends StatelessWidget {
   Widget cardCustom(String title, String content, String route, Color color,
       Responsive _responsive) {
     return Container(
-      height: _responsive.height * .2,
+      height: _responsive.height * .1,
       width: _responsive.width*.3,
       child: Card(
         color: color,
@@ -51,7 +51,8 @@ class HomePage extends StatelessWidget {
           borderRadius: BorderRadius.circular(15.0),
         ),
         child: Column(
-          children: <Widget>[Text(title)],
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[Text(title, style: TextStyle(fontSize: _responsive.ip*.02),)],
         ),
       ),
     );
