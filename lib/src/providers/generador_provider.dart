@@ -95,6 +95,9 @@ class GeneradorAleatorios with ChangeNotifier {
    return semillas;
  }
 
+
+// ----------------------------------------------------------------------------------------------------------
+//Metodo para la generacion de numeros por el metodo congruencial mixto
  generadorMixto(double semilla, int multiplicador, int modulo, int constante, int numeroSemillas){
    if(semilla<1){
      print("Error en semilla");
@@ -115,7 +118,7 @@ class GeneradorAleatorios with ChangeNotifier {
    List<double> semillas = [];
    semillas.add(semilla);
    for (var i = 0; i < numeroSemillas; i++) 
-     semillas.add(((semillas[semillas.length-1]*multiplicador)+constante)%100);
+     semillas.add(((semillas[semillas.length-1]*multiplicador)+constante)%modulo);
    return semillas;
  }
 
