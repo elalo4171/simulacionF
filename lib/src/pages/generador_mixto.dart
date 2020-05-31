@@ -29,6 +29,7 @@ class _MixtoState extends State<Mixto> {
     _controllerModulo = new TextEditingController();
     _controllerCantidad = new TextEditingController();
     _controllerSemilla = new TextEditingController();
+    _controllerMultiplicativa = new TextEditingController();
     _controllerConstante = new TextEditingController();
     _semilla = 0;
     _cantidad_semillas = 0;
@@ -104,11 +105,11 @@ class _MixtoState extends State<Mixto> {
                           _semilla = 0;
                           _modulo = 0;
                           _cantidad_semillas = 0;
-                          // _controllerCantidad.clear();
-                          // _controllerModulo.clear();
-                          // _controllerSemilla.clear();
-                          // _controllerMultiplicativa.clear();
-                          // _controllerConstante.clear();
+                          _controllerCantidad.clear();
+                          _controllerModulo.clear();
+                          _controllerSemilla.clear();
+                          _controllerMultiplicativa.clear();
+                          _controllerConstante.clear();
                           Navigator.pushNamed(context, 'ver');
                         },
                       )

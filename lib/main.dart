@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         title: 'Material App',
         routes: {
           'home':(BuildContext context)=>HomePage(),
-          'ver':(BuildContext context)=>ShowNumeros(),
+          'ver':(BuildContext context)=>ShowNumeros(storage: CounterStorage()),
           'adictivo':(BuildContext context)=>Adictivo(),
           'multiplicativo':(BuildContext context)=>Multiplicativo(),
           'mixto': (BuildContext context) => Mixto(),
