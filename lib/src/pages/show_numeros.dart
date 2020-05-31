@@ -62,7 +62,7 @@ class _ShowNumerosState extends State<ShowNumeros> {
                   SizedBox(
                     height: _responsive.height * .02,
                   ),
-                  tittle("Numeros Generados", _metodo,
+                  title("Numeros Generados", _metodo,
                       TextStyle(fontSize: _responsive.ip * .035), _responsive),
                   ListTile(
                     title: Text("Periodo de repeticion"),
