@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:simulacion/src/pages/generador_adictivo.dart';
+import 'package:simulacion/src/pages/generador_mixto.dart';
 import 'package:simulacion/src/pages/generadpr_multiplicativo.dart';
 import 'package:simulacion/src/pages/home_page.dart';
 import 'package:provider/provider.dart';
@@ -25,8 +26,9 @@ class MyApp extends StatelessWidget {
           'ver':(BuildContext context)=>ShowNumeros(),
           'adictivo':(BuildContext context)=>Adictivo(),
           'multiplicativo':(BuildContext context)=>Multiplicativo(),
+          'mixto': (BuildContext context) => Mixto(),
         },
-        initialRoute: 'multiplicativo',
+        initialRoute: 'mixto',
         theme: miTema,
         debugShowCheckedModeBanner: false,
       ),

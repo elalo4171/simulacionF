@@ -35,6 +35,18 @@ class GeneradorAleatorios with ChangeNotifier {
   }
 
 // ----------------------------------------------------------------------------------------------------------
+// ----------------------------------------------------------------------------------------------------------
+
+  List<double> _aleatoriosMixto = [];
+
+  get numerosAleatoriosMixto => _aleatoriosMixto;
+
+  set numerosAleatoriosMixto(List<double> numeros) {
+    _aleatoriosMixto = numeros;
+    notifyListeners();
+  }
+
+// ----------------------------------------------------------------------------------------------------------
 //Metodo para generar numero pseudoaleatorios por el metodo adictivo
 
   generarAdictivo(List<double> semillas, int modulo, int numeroSemillas) {
@@ -65,7 +77,7 @@ class GeneradorAleatorios with ChangeNotifier {
      print("Error con el multiplicador");
      return -1;
    }
-   if(semilla<0){
+   if(semilla>0){
      print("Error en semilla");
      return -1;
    }
@@ -78,6 +90,30 @@ class GeneradorAleatorios with ChangeNotifier {
    for (var i = 0; i < numeroSemillas; i++) {
      semillas.add((semillas[semillas.length-1]*multiplicador)%100);
    }
+   return semillas;
+ }
+
+ generadorMixto(double semilla, int multiplicador, int modulo, int constante, int numeroSemillas){
+   if(semilla<1){
+     print("Error en semilla");
+     return -1;
+   }
+   if(multiplicador<1){
+     print("Error en multiplicador");
+     return -1;
+   }
+   if(constante<1){
+     print("Error en constante aditiva");
+     return -1;
+   }
+   if(modulo<semilla || modulo<multiplicador || modulo<constante){
+     print("El modulo tiene que ser mayor que la semilla, el multiplicador y la constante aditiva");
+     return -1;
+   }
+   List<double> semillas = [];
+   semillas.add(semilla);
+   for (var i = 0; i < numeroSemillas; i++) 
+     semillas.add(((semillas[semillas.length-1]*multiplicador)+constante)%100);
    return semillas;
  }
 
