@@ -36,6 +36,11 @@ class _ShowNumerosState extends State<ShowNumeros> {
         _numerosGenerados= info.numerosAleatoriosMultiplicativo;
         _periodo= info.repeticion(info.numerosAleatoriosMultiplicativo).toString();
         break;
+        case 3:
+        _metodo = "Metodo Mixto";
+        _numerosGenerados = info.numerosAleatoriosMixto;
+        _periodo = info.repeticion(info.numerosAleatoriosMixto).toString();
+        break;
       default:
     }
   }
