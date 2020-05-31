@@ -16,20 +16,30 @@ class HomePage extends StatelessWidget {
         children: <Widget>[
           ListView(
             children: <Widget>[
-              SizedBox(height: _responsive.height*.02,),
-              Container(
-                padding: EdgeInsets.only(left: _responsive.width*.03),
-                child: Text("Metodos de generacion de numeros pseudoaleatorios", 
-                style: TextStyle(fontSize: _responsive.ip*.025,fontWeight: FontWeight.w500),),
+              SizedBox(
+                height: _responsive.height * .02,
               ),
               Container(
-                padding: EdgeInsets.symmetric(vertical: _responsive.height*.03),
+                padding: EdgeInsets.only(left: _responsive.width * .03),
+                child: Text(
+                  "Metodos de generacion de numeros pseudoaleatorios",
+                  style: TextStyle(
+                      fontSize: _responsive.ip * .025,
+                      fontWeight: FontWeight.w500),
+                ),
+              ),
+              Container(
+                padding:
+                    EdgeInsets.symmetric(vertical: _responsive.height * .03),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
-                    cardCustom("Multiplicativo", "ESTE ES EL CONTENIDO", 'paas', Colors.cyan, _responsive),
-                    cardCustom("Adictivo", "ESTE ES EL CONTENIDO", 'paas', Colors.cyan, _responsive),
-                    cardCustom("Mixto", "ESTE ES EL CONTENIDO", 'paas', Colors.cyan, _responsive),
+                    cardCustom("Multiplicativo", "ESTE ES EL CONTENIDO",
+                        'multiplicativo', Colors.cyan, _responsive, context),
+                    cardCustom("Adictivo", "ESTE ES EL CONTENIDO", 'adictivo',
+                        Colors.cyan, _responsive, context),
+                    cardCustom("Mixto", "ESTE ES EL CONTENIDO", 'mixto',
+                        Colors.cyan, _responsive, context),
                   ],
                 ),
               )
@@ -41,18 +51,26 @@ class HomePage extends StatelessWidget {
   }
 
   Widget cardCustom(String title, String content, String route, Color color,
-      Responsive _responsive) {
+      Responsive _responsive, BuildContext context) {
     return Container(
       height: _responsive.height * .1,
-      width: _responsive.width*.3,
-      child: Card(
-        color: color,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15.0),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[Text(title, style: TextStyle(fontSize: _responsive.ip*.02),)],
+      width: _responsive.width * .3,
+      child: GestureDetector(
+        onTap: ()=>Navigator.pushNamed(context, route),
+        child: Card(
+          color: color,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15.0),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                title,
+                style: TextStyle(fontSize: _responsive.ip * .02),
+              )
+            ],
+          ),
         ),
       ),
     );
