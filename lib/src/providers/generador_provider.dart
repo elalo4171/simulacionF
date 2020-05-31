@@ -54,7 +54,7 @@ class GeneradorAleatorios with ChangeNotifier {
     for (var i = 0; i < numeroSemillas; i++) {
       double suma = semillasTemporales[i] +
           semillasTemporales[semillasTemporales.length - 1];
-      double conModulo = suma % 100;
+      double conModulo = suma % modulo;
       semillasTemporales.add(conModulo);
     }
     return semillasTemporales;

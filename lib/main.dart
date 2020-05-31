@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
           'multiplicativo':(BuildContext context)=>Multiplicativo(),
           'corridas':(BuildContext context)=>CorridasArribaAbajo(),
         },
-        initialRoute: 'multiplicativo',
+        initialRoute: 'home',
         theme: miTema,
         debugShowCheckedModeBanner: false,
       ),
