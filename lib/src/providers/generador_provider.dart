@@ -1,5 +1,7 @@
-import 'package:flutter/material.dart';
+import 'dart:math';
 
+import 'package:flutter/material.dart';
+import "package:normal/normal.dart";
 class GeneradorAleatorios with ChangeNotifier {
 // ----------------------------------------------------------------------------------------------------------
   int _metodoSeleccionado = 0;
@@ -98,4 +100,58 @@ class GeneradorAleatorios with ChangeNotifier {
     }
     return 0;
   }
+
+// ----------------------------------------------------------------------------------------------------------
+// ----------------------------------------------------------------------------------------------------------
+
+//Metodo de pruebas corridas arriba y abajo
+
+corridasArribaAbajo(List<double> numeros){
+  int totalNumeros= numeros.length;
+  List<int> bits=[];
+  int bit;
+  int corridas=1;
+  double media,varianza,z;
+
+  //Variables con datos determinados
+final  double confianza = .95;
+    double alfa = 1-confianza;
+  double zn;
+
+  for (var i = 0; i < totalNumeros; i++) {
+    int next=i-1;
+    if(i==0) next= totalNumeros-1;
+    if(numeros[i]<=numeros[next]){
+      bits.add(0);
+    }else{
+      bits.add(1);
+    }
+  }
+
+  bit=bits[0];
+  for (var i = 0; i < bits.length; i++) {
+    if(bits[i]!= bit){
+      corridas++;
+      bit=bits[i];
+    }
+  }
+  media=(2*totalNumeros-1)/3.0;
+  print("Media: "+ media.toString());
+  varianza=(16*totalNumeros-29)/90.0;
+  print("Varianza: "+ varianza.toString());
+  z= ((corridas-media)/sqrt(varianza)).abs();
+  print("Z: "+ z.toString());
+  print('---------------------------------------------------------------------------------------------------------------------------');
+  zn=Normal.quantile(1-alfa/2);
+
+  if (z < zn){
+        return("No se rechaza que son independientes. " );
+    }
+    else{
+        return("No Pasa la prueba de corridas");
+    }
+
+}
+
+
 }

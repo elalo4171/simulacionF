@@ -119,7 +119,7 @@ class _MultiplicativoState extends State<Multiplicativo> {
   ListTile tiitlePage(TextStyle tittle, Responsive _responsive) {
     return ListTile(
       title: Text(
-        'Generador adictivo',
+        'Generador multiplicativo',
         style: tittle,
       ),
       subtitle: Container(
