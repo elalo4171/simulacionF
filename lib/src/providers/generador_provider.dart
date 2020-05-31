@@ -117,7 +117,7 @@ class GeneradorAleatorios with ChangeNotifier {
    }
    List<double> semillas = [];
    semillas.add(semilla);
-   for (var i = 0; i < numeroSemillas; i++) 
+   for (var i = 0; i < numeroSemillas-1; i++) 
      semillas.add(((semillas[semillas.length-1]*multiplicador)+constante)%modulo);
    return semillas;
  }

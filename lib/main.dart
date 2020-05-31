@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
           'mixto': (BuildContext context) => Mixto(),
           'corridas':(BuildContext context)=>CorridasArribaAbajo(),
         },
-        initialRoute: 'home',
+        initialRoute: 'mixto',
         theme: miTema,
         debugShowCheckedModeBanner: false,
       ),
