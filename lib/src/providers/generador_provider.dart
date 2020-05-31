@@ -79,7 +79,7 @@ class GeneradorAleatorios with ChangeNotifier {
      print("Error con el multiplicador");
      return -1;
    }
-   if(semilla>0){
+   if(semilla<0){
      print("Error en semilla");
      return -1;
    }
