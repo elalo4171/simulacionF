@@ -17,6 +17,7 @@ class HomePage extends StatelessWidget {
                     EdgeInsets.symmetric(vertical: _responsive.height * .03, horizontal: _responsive.width*.02),
                 child: Text("Simulacion", style: TextStyle(fontSize: _responsive.ip*.033, fontWeight: FontWeight.w600),),
               ),
+              Divider(),
               SizedBox(
                 height: _responsive.height * .02,
               ),
@@ -89,7 +90,7 @@ class HomePage extends StatelessWidget {
       child: Text(
         subtitle,
         style: TextStyle(
-            fontSize: _responsive.ip * .025, fontWeight: FontWeight.w500),
+            fontSize: _responsive.ip * .025, fontWeight: FontWeight.w500, color: Colors.black87),
       ),
     );
   }
@@ -111,7 +112,7 @@ class HomePage extends StatelessWidget {
             children: <Widget>[
               Text(
                 title,
-                style: TextStyle(fontSize: _responsive.ip * .02),
+                style: TextStyle(fontSize: _responsive.ip * .02, color: Colors.white),
               )
             ],
           ),

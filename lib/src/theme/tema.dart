@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 
-final miTema= ThemeData.dark().copyWith(
+final miTema= ThemeData( primaryColor: Colors.cyan);
 
-  // textTheme: TextTheme(body1: TextStyle(color: Colors.white)),
-  accentColor: Colors.white,
-  scaffoldBackgroundColor: Colors.black
-);
+// z
