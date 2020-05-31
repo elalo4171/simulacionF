@@ -16,12 +16,20 @@ class HomePage extends StatelessWidget {
         children: <Widget>[
           ListView(
             children: <Widget>[
+              SizedBox(height: _responsive.height*.02,),
+              Container(
+                padding: EdgeInsets.only(left: _responsive.width*.03),
+                child: Text("Metodos de generacion de numeros pseudoaleatorios", 
+                style: TextStyle(fontSize: _responsive.ip*.025,fontWeight: FontWeight.w500),),
+              ),
               Container(
                 padding: EdgeInsets.symmetric(vertical: _responsive.height*.03),
-                child: Column(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
-                    cardCustom("HOla", "ESTE ES EL CONTENIDO", 'paas',
-                        Colors.orange, _responsive)
+                    cardCustom("HOla", "ESTE ES EL CONTENIDO", 'paas', Colors.cyan, _responsive),
+                    cardCustom("HOla", "ESTE ES EL CONTENIDO", 'paas', Colors.cyan, _responsive),
+                    cardCustom("HOla", "ESTE ES EL CONTENIDO", 'paas', Colors.cyan, _responsive),
                   ],
                 ),
               )
