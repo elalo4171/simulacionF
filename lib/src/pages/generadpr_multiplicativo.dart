@@ -3,42 +3,37 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:simulacion/src/providers/generador_provider.dart';
 import 'package:simulacion/src/utility/responsive.dart';
+import 'package:simulacion/src/widgets/tittle_widget.dart';
 
-class Adictivo extends StatefulWidget {
-  Adictivo({Key key}) : super(key: key);
+class Multiplicativo extends StatefulWidget {
+  Multiplicativo({Key key}) : super(key: key);
 
   @override
-  _AdictivoState createState() => _AdictivoState();
+  _MultiplicativoState createState() => _MultiplicativoState();
 }
 
-class _AdictivoState extends State<Adictivo> {
-  TextEditingController _controllerSemillas;
-  TextEditingController _controllerModulo;
+class _MultiplicativoState extends State<Multiplicativo> {
   TextEditingController _controllerCantidad;
-  List<double> _semillas;
-  int _modulo;
+  TextEditingController _controllerModulo;
+  TextEditingController _controllerSemilla;
+  TextEditingController _controllerMultiplicativa;
   int _cantidad_semillas;
-  bool _editModulo;
-  bool _editCantidad;
+  int _modulo;
+  double _semilla;
+  int _multiplicativa;
+
   @override
   void initState() {
-    _editModulo = true;
-    _editCantidad = true;
-    _controllerSemillas = new TextEditingController();
     _controllerModulo = new TextEditingController();
     _controllerCantidad = new TextEditingController();
-    _semillas = [];
-    _modulo = 100;
-    _cantidad_semillas = 100;
+    _controllerSemilla = new TextEditingController();
+    _semilla = 0;
+    _cantidad_semillas = 0;
+    _modulo = 0;
+    _multiplicativa=0;
+    
+    // TODO: implement initState
     super.initState();
-  }
-
-  String generarSemillasTexto(List semillas) {
-    String texto = "";
-    for (var item in semillas) {
-      texto = texto + " , " + item.toString();
-    }
-    return texto;
   }
 
   @override
@@ -67,20 +62,21 @@ class _AdictivoState extends State<Adictivo> {
                       SizedBox(
                         height: _responsive.height * .03,
                       ),
-                      ingresarSemillas(),
-                      SizedBox(
-                        height: _responsive.height * .015,
-                      ),
-                      _semillas.length != 0 ? showSemillas() : Container(),
-                      _semillas.length != 0
-                          ? SizedBox(
-                              height: _responsive.height * .015,
-                            )
-                          : Container(),
+                      // ingresarSemillas(),
                       ingresarModulo(),
                       SizedBox(
                         height: _responsive.height * .015,
                       ),
+                      ingresarSemilla(),
+                      SizedBox(
+                        height: _responsive.height * .015,
+                      ),
+                      ingresarMultiplicativo(),
+
+                      SizedBox(
+                        height: _responsive.height * .015,
+                      ),
+
                       ingresarCantidad(),
                       SizedBox(
                         height: _responsive.height * .015,
@@ -96,18 +92,16 @@ class _AdictivoState extends State<Adictivo> {
                           borderRadius: BorderRadius.circular(18.0),
                         ),
                         onPressed: () {
-                          generador.numerosAleatoriosAdictivo =
-                              generador.generarAdictivo(
-                                  _semillas, _modulo, _cantidad_semillas);
-                          generador.metodoSeleccionado = 1;
-                          _semillas = [];
+                          generador.numerosAleatoriosMultiplicativo =
+                              generador.generadorMultiplicativo(
+                                  _semilla,_multiplicativa,  _modulo, _cantidad_semillas);
+                          generador.metodoSeleccionado = 2;
+                          _semilla = 0;
                           _modulo = 0;
                           _cantidad_semillas = 0;
                           _controllerCantidad.clear();
                           _controllerModulo.clear();
-                          _controllerSemillas.clear();
-                          _editCantidad = true;
-                          _editModulo = true;
+                          _controllerSemilla.clear();
                           Navigator.pushNamed(context, 'ver');
                         },
                       )
@@ -138,64 +132,16 @@ class _AdictivoState extends State<Adictivo> {
     return ListTile(
       title: Text("Ingresa el modulo  ( Multiplo de 2 recomendado )"),
       subtitle: TextField(
-        enabled: _editModulo,
         controller: _controllerModulo,
         keyboardType: TextInputType.number,
         inputFormatters: <TextInputFormatter>[
           WhitelistingTextInputFormatter.digitsOnly
         ],
+        onChanged: (val) {
+          _modulo = int.parse(val);
+          setState(() {});
+        },
       ),
-      trailing: IconButton(
-          icon: Icon(
-            _editModulo ? Icons.add : Icons.edit,
-            color: Colors.white,
-          ),
-          onPressed: _editModulo
-              ? () {
-                  _modulo = int.parse(_controllerModulo.value.text);
-                  _editModulo = false;
-                  setState(() {});
-                }
-              : () {
-                  _editModulo = true;
-                  setState(() {});
-                }),
-    );
-  }
-
-  ListTile showSemillas() {
-    return ListTile(
-      title: Text("Semillas ingresadas"),
-      subtitle: Text(generarSemillasTexto(_semillas)),
-      trailing: IconButton(
-          icon: Icon(
-            Icons.clear,
-            color: Colors.white,
-          ),
-          onPressed: () {
-            _semillas = [];
-            setState(() {});
-          }),
-    );
-  }
-
-  ListTile ingresarSemillas() {
-    return ListTile(
-      title: Text("Ingrese las semillas"),
-      subtitle: TextField(
-        controller: _controllerSemillas,
-        keyboardType: TextInputType.number,
-      ),
-      trailing: IconButton(
-          icon: Icon(
-            Icons.add,
-            color: Colors.white,
-          ),
-          onPressed: () {
-            _semillas.add(double.parse(_controllerSemillas.value.text));
-            _controllerSemillas.clear();
-            setState(() {});
-          }),
     );
   }
 
@@ -208,20 +154,44 @@ class _AdictivoState extends State<Adictivo> {
         inputFormatters: <TextInputFormatter>[
           WhitelistingTextInputFormatter.digitsOnly
         ],
+        onChanged: (val) {
+          _cantidad_semillas = int.parse(val);
+          setState(() {});
+
+        },
       ),
-      trailing: IconButton(
-          icon: Icon(_editCantidad ? Icons.add : Icons.edit),
-          onPressed: _editCantidad
-              ? () {
-                  _cantidad_semillas =
-                      int.parse(_controllerCantidad.value.text);
-                  _editCantidad = false;
-                  setState(() {});
-                }
-              : () {
-                  _editCantidad = true;
-                  setState(() {});
-                }),
+    );
+  }
+
+  Widget ingresarSemilla() {
+    return ListTile(
+      title: Text("Ingresa la semilla"),
+      subtitle: TextField(
+        controller: _controllerSemilla,
+        keyboardType: TextInputType.number,
+        onChanged: (val) {
+          _semilla = double.parse(val);
+          setState(() {});
+
+        },
+      ),
+    );
+  }
+
+  ListTile ingresarMultiplicativo() {
+    return ListTile(
+      title: Text("Ingresa la variable multiplicativa"),
+      subtitle: TextField(
+        controller: _controllerMultiplicativa,
+        keyboardType: TextInputType.number,
+        inputFormatters: <TextInputFormatter>[
+          WhitelistingTextInputFormatter.digitsOnly
+        ],
+        onChanged: (val){
+          _multiplicativa= int.parse(val);
+          setState(() {});
+        },
+      ),
     );
   }
 }

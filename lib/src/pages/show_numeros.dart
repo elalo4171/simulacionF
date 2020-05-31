@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:simulacion/src/providers/generacion_provider.dart';
+import 'package:simulacion/src/providers/generador_provider.dart';
 import 'package:simulacion/src/widgets/tittle_widget.dart';
 import 'package:simulacion/src/utility/responsive.dart';
 
@@ -30,6 +30,11 @@ class _ShowNumerosState extends State<ShowNumeros> {
         _numerosGenerados = info.numerosAleatoriosAdictivo;
         _periodo = info.repeticion(info.numerosAleatoriosAdictivo).toString();
         setState(() {});
+        break;
+        case 2:
+        _metodo= "Metodo multiplicativo";
+        _numerosGenerados= info.numerosAleatoriosMultiplicativo;
+        _periodo= info.repeticion(info.numerosAleatoriosMultiplicativo).toString();
         break;
       default:
     }
