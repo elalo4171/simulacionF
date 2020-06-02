@@ -79,8 +79,7 @@ class GeneradorAleatorios with ChangeNotifier {
 //Metodo para la generacion de numeros por el metodo congruencial multiplicativo
   generadorMultiplicativo(
       double semilla, int multiplicador, int modulo, int numeroSemillas) {
-    if (multiplicador % 3 == 0 ||
-        multiplicador % 5 == 0 ||
+    if (
         multiplicador % 2 == 0) {
       print("Error con el multiplicador");
       return -1;
@@ -142,7 +141,7 @@ class GeneradorAleatorios with ChangeNotifier {
         if (numeros[i] == numeros[j]) {
           veces++;
         }
-        if (veces == 2) return j - i;
+        if (veces >= 2) return j - i;
       }
     }
     return 0;
