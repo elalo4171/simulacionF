@@ -56,7 +56,7 @@ class _CorridasArribaAbajoState extends State<CorridasArribaAbajo> {
 
   void traerNumeros() async{
     numerosArchivo = await widget.storage.readCounter();
-
+    print('qui');
   }
 
   List<DropdownMenuItem> opciones(GeneradorAleatorios generadorAleatorios){
