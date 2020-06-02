@@ -358,5 +358,34 @@ class GeneradorAleatorios with ChangeNotifier {
         
     }
 
+ getTi(){
+    return tiNormal(_numerosKolmogorov);
+ }
+
+    tiNormal(List numeros){
+      List<double> numerosOk=[];
+        double miu=calcularMiu(numeros);
+        double sigma=calcularDesviacion(numeros, miu);
+        for (var numero in numeros) {
+
+          double x = numero * sigma - miu + sigma;
+          numerosOk.add(x);
+          print(x);
+        }
+        return numerosOk;
+    }
+
+       double calcularMiu(List<double> numeros) {
+       return (numeros.reduce((a, b) => a+b))/numeros.length;
+    }
+
+     double calcularDesviacion(List<double> numeros, double miu) {
+       double sum=0;
+       for (var i = 0; i < numeros.length; i++) {
+         sum+=pow(numeros[i]-miu, 2);
+       }
+       return sum/numeros.length;
+    }
+
 
 }
