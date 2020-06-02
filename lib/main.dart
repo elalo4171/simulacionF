@@ -8,7 +8,7 @@ import 'package:simulacion/src/pages/prueba_corridas.dart' as a;
 import 'package:simulacion/src/pages/show_numeros.dart' as b;
 import 'package:simulacion/src/providers/generador_provider.dart';
 import 'package:simulacion/src/theme/tema.dart';
-
+import 'package:simulacion/src/pages/kolmogorov_page.dart';
 void main() => runApp(MyApp());
  
 class MyApp extends StatelessWidget {
@@ -28,6 +28,7 @@ class MyApp extends StatelessWidget {
           'adictivo':(BuildContext context)=>Adictivo(),
           'multiplicativo':(BuildContext context)=>Multiplicativo(),
           'mixto': (BuildContext context) => Mixto(),
+          'kolmo':(BuildContext context)=>KolmogorovPage(),
           'corridas':(BuildContext context)=>a.CorridasArribaAbajo(storage: a.CounterStorage(),),
         },
         initialRoute: 'home',

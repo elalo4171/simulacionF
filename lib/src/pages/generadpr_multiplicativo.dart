@@ -104,7 +104,7 @@ class _MultiplicativoState extends State<Multiplicativo> {
                           _controllerSemilla.clear();
                           Navigator.pushNamed(context, 'ver');
                         },
-                      )
+                      ),
                     ],
                   ),
                 )

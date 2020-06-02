@@ -17,13 +17,23 @@ class CorridasArribaAbajo extends StatefulWidget {
 }
 
 class _CorridasArribaAbajoState extends State<CorridasArribaAbajo> {
+
+
+
     List<int> numerosArchivo=[];
     List<double> numerosAcrhivoDouble=[];
+    List<double> numerosSeleccionados=[];
+  
+  @override
+  void initState() {
+    traerNumeros();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     Responsive _responsive = new Responsive(context);
-    List<double> numerosSeleccionados=[];
-    traerNumeros();
+    // traerNumeros()
     final generador = Provider.of<GeneradorAleatorios>(context);
     return Scaffold(
        body: SafeArea(
@@ -40,13 +50,23 @@ class _CorridasArribaAbajoState extends State<CorridasArribaAbajo> {
                   child: title("Corridas arriba y abajo","Prueba de alateoridad",TextStyle(fontSize: _responsive.ip * .035), _responsive),
                 ),
                 Container(
-                  child: DropdownButton(
+                  child: ListTile(
+                    title: Text("Selecciona los numeros a usar"),
+                    subtitle: DropdownButton(
                     items: opciones(generador),
                     onChanged: (value) {
                       numerosSeleccionados=value;
+                      setState(() {
+                      });
                     },
                   ),
-                )
+                  )
+                ),
+                numerosSeleccionados.length!=0?
+                ListTile(
+                  title: Text("Resultados de la prueba"),
+                  subtitle: Text(generador.corridasArribaAbajo(numerosSeleccionados)),
+                ):Container()
                ],
              )
            ],
@@ -56,7 +76,13 @@ class _CorridasArribaAbajoState extends State<CorridasArribaAbajo> {
 
   void traerNumeros() async{
     numerosArchivo = await widget.storage.readCounter();
-    print('qui');
+    print(numerosArchivo);
+    for (int i = 0; i < numerosArchivo.length; i ++){
+        numerosAcrhivoDouble.add(numerosArchivo[i].toDouble());
+      }
+      setState(() {
+
+      });
   }
 
   List<DropdownMenuItem> opciones(GeneradorAleatorios generadorAleatorios){
@@ -71,9 +97,6 @@ class _CorridasArribaAbajoState extends State<CorridasArribaAbajo> {
       items.add(DropdownMenuItem(child: Text("Aleatorios Mixto(Generados)"),value: generadorAleatorios.numerosAleatoriosMixto,));
     }
     if(numerosArchivo.length!=0){
-      for (int i = 0; i < numerosArchivo.length; i ++){
-        numerosAcrhivoDouble[i] = numerosArchivo[i].toDouble();
-      }
       items.add(DropdownMenuItem(child: Text("Numeros en archivo"),value: numerosAcrhivoDouble,));
     }
     //Archivos
@@ -110,7 +133,7 @@ class CounterStorage {
 
       // Leer archivo
       List<int> contents = await file.readAsBytes();
-
+      // print(contents);
       return contents;
     } catch (e) {
       // Si encuentras un error, regresamos 0

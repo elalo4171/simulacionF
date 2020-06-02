@@ -79,8 +79,7 @@ class GeneradorAleatorios with ChangeNotifier {
 //Metodo para la generacion de numeros por el metodo congruencial multiplicativo
   generadorMultiplicativo(
       double semilla, int multiplicador, int modulo, int numeroSemillas) {
-    if (multiplicador % 3 == 0 ||
-        multiplicador % 5 == 0 ||
+    if (
         multiplicador % 2 == 0) {
       print("Error con el multiplicador");
       return -1;
@@ -142,8 +141,9 @@ class GeneradorAleatorios with ChangeNotifier {
         if (numeros[i] == numeros[j]) {
           veces++;
         }
-        if (veces == 2) return j - i;
+        if (veces >= 2) return j - i;
       }
+      veces=0;
     }
     return 0;
   }
@@ -199,6 +199,9 @@ class GeneradorAleatorios with ChangeNotifier {
     }
   }
 
+// ----------------------------------------------------------------------------------------------------------
+
+
 //List de files in a path
   listFiles(String path) async{
     String directory;
@@ -208,80 +211,101 @@ class GeneradorAleatorios with ChangeNotifier {
           .listSync(); 
     return file;
   }
+// ----------------------------------------------------------------------------------------------------------
 
 
-List<double> _alfa=[0.10,0.05,0.01];
-List<int> _size=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,25,30,35,40,50,60,70,80,90,100];
-List<List<double>> _ks=[
-        [0.950,0.975,0.995],
-        [0.776,0.842,0.929],
-        [0.642,0.975,0.995],
-        [0.564,0.842,0.929],
-        [0.510,0.708,0.829],
-        [0.470,0.624,0.734],
-        [0.438,0.563,0.669],
-        [0.411,0.521,0.618],
-        [0.388,0.486,0.577],
-        [0.368,0.457,0.543],
-        [0.352,0.432,0.514],
-        [0.338,0.409,0.486],
-        [0.352,0.391,0.468],
-        [0.338,0.375,0.450],
-        [0.352,0.361,0.433],
-        [0.314,0.349,0.418],
-        [0.304,0.338,0.404],
-        [0.295,0.328,0.392],
-        [0.286,0.318,0.381],
-        [0.278,0.309,0.371],
-        [0.272,0.294,0.352],
-        [0.264,0.264,0.317],
-        [0.240,0.242,0.290],
-        [0.220,0.230,0.270],
-        [0.210,0.210,0.252],
-        [0.000,0.188,0.226],
-        [0.000,0.172,0.207],
-        [0.000,0.160,0.192],
-        [0.000,0.150,0.180],
-        [0.000,0.040,0.141],
-        [0.000,0.134,0.000],
-];
+// List<double> _alfa=[0.10,0.05,0.01];
+// List<int> _size=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,25,30,35,40,50,60,70,80,90,100];
+// List<List<double>> _ks=[
+//         [0.950,0.975,0.995],
+//         [0.776,0.842,0.929],
+//         [0.642,0.975,0.995],
+//         [0.564,0.842,0.929],
+//         [0.510,0.708,0.829],
+//         [0.470,0.624,0.734],
+//         [0.438,0.563,0.669],
+//         [0.411,0.521,0.618],
+//         [0.388,0.486,0.577],
+//         [0.368,0.457,0.543],
+//         [0.352,0.432,0.514],
+//         [0.338,0.409,0.486],
+//         [0.352,0.391,0.468],
+//         [0.338,0.375,0.450],
+//         [0.352,0.361,0.433],
+//         [0.314,0.349,0.418],
+//         [0.304,0.338,0.404],
+//         [0.295,0.328,0.392],
+//         [0.286,0.318,0.381],
+//         [0.278,0.309,0.371],
+//         [0.272,0.294,0.352],
+//         [0.264,0.264,0.317],
+//         [0.240,0.242,0.290],
+//         [0.220,0.230,0.270],
+//         [0.210,0.210,0.252],
+//         [0.000,0.188,0.226],
+//         [0.000,0.172,0.207],
+//         [0.000,0.160,0.192],
+//         [0.000,0.150,0.180],
+//         [0.000,0.040,0.141],
+//         [0.000,0.134,0.000],
+// ];
 
-  kolmo(double alfa, int size){
-    int posx=0, posy=0;
-    double estadistico=0;
+//   kolmo(double alfa, int size){
+//     int posx=0, posy=0;
+//     double estadistico=0;
 
-    if(size<=100){
-      for (int i = 0; i < _alfa.length; i++) {
-                if (_alfa[i] == alfa) {
-                    posx = i;
-                }
-            }
-            for (int i = 0; i < _size.length; i++) {
-                if (_size[i] == size) {
-                    posy = i;
-                }
-            }
-            if (posx == 0 || posy == 0) {
-                estadistico = -1;
-            }
-            estadistico =  _ks[posx][posy];
-    }else{
-       if(alfa == 0.1){
-                estadistico = (1.22/sqrt(size));
-            }
-            if(alfa == 0.05){
-                estadistico = (1.36/sqrt(size));
-            }
-            if(alfa == 0.01){
-                estadistico = (1.63/sqrt(size));
-            }
+//     if(size<=100){
+//       for (int i = 0; i < _alfa.length; i++) {
+//                 if (_alfa[i] == alfa) {
+//                     posx = i;
+//                 }
+//             }
+//             for (int i = 0; i < _size.length; i++) {
+//                 if (_size[i] == size) {
+//                     posy = i;
+//                 }
+//             }
+//             if (posx == 0 || posy == 0) {
+//                 estadistico = -1;
+//             }
+//             estadistico =  _ks[posx][posy];
+//     }else{
+//        if(alfa == 0.1){
+//                 estadistico = (1.22/sqrt(size));
+//             }
+//             if(alfa == 0.05){
+//                 estadistico = (1.36/sqrt(size));
+//             }
+//             if(alfa == 0.01){
+//                 estadistico = (1.63/sqrt(size));
+//             }
 
-    }
-    return estadistico;
+//     }
+//     return estadistico;
 
+//   }
+
+// ----------------------------------------------------------------------------------------------------------
+
+
+  List<double> _numerosKolmogorov = [];
+
+  get numerosKolmogorov => _aleatoriosMultiplicativo;
+
+  set numerosKolmogorov(List<double> numeros) {
+    _numerosKolmogorov = numeros;
+    notifyListeners();
   }
 
-        pruebaKolmogorov(List<double > numeros){
+// ----------------------------------------------------------------------------------------------------------
+  bool getKolmogorov(){
+    return _pruebaKolmogorov(_numerosKolmogorov);
+  }
+
+// ----------------------------------------------------------------------------------------------------------
+
+
+       bool _pruebaKolmogorov(List<double > numeros){
         List vect;
         List dM,d;
         double Xi=0,j=1;
@@ -324,9 +348,11 @@ List<List<double>> _ks=[
         }
         double dnHipotesis = 1.36/sqrt(vect.length);
         if(mayor<=dnHipotesis){
-         return "Prueba de Kolmogorov: Se acepta la hipotesis de que los numeros tienen una distribucion uniforme";
-        }else
-            return ("Prueba de Kolmogorov: Se rechaza la hipotesis de que los numeros tienen una distribucion uniforme");
+         return true;
+        //  "Prueba de Kolmogorov: Se acepta la hipotesis de que los numeros tienen una distribucion uniforme";
+        }else 
+            return  false;
+            // "Prueba de Kolmogorov: Se rechaza la hipotesis de que los numeros tienen una distribucion uniforme";
         
     }
 

@@ -121,6 +121,13 @@ class _ShowNumerosState extends State<ShowNumeros> {
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(18.0),
                             ),
+                          ),RaisedButton(
+                            child: Text("Ir a inicio", style: TextStyle(color: Colors.black),),
+                            color: Colors.white,
+                            onPressed:() => Navigator.pushNamed(context, 'home'),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18.0),
+                            ),
                           ),
                         ],
                       ),
@@ -139,7 +146,7 @@ class _ShowNumerosState extends State<ShowNumeros> {
     for (var i = 0; i < _numerosGenerados.length; i++)
       temp.add(_numerosGenerados[i].toInt());
     widget.storage.writeCounter(temp);
-    final snackBar = SnackBar(
+    final snackBar =  SnackBar(
       content: Text(await _localPath, style: TextStyle(color: Colors.white)),
       backgroundColor: Colors.green,
       action: SnackBarAction(
