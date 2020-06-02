@@ -9,6 +9,7 @@ Se presenta una aplicación móvil desarrollada en el lenguaje de programación 
 1.- Generar números pseudoaleatorio
 -
 En este caso nosotros utilizaremos el metodo mixto, vamos a inicio > click en botón "mixto"
+
 ![Mixto](https://github.com/elalo4171/simulacionF/blob/master/images/mixto.png)
 
 2.- Ingresamos las variables necesarias en este caso 
@@ -18,27 +19,35 @@ En este caso nosotros utilizaremos el metodo mixto, vamos a inicio > click en bo
  - Cantidad de semillas a generar: 100 
  - Constante Aditiva: 89
  - Modulo: 100
+
 ![](https://github.com/elalo4171/simulacionF/blob/master/images/mixtoLleno.png)
 
 3 .- Guardamos los números en memoria
 - 
 Damos click en "generar" y nos dara el resultado de las operaciones en la siguiente ventana podremos escojer entre guardar los numeros en un archivo de memoria, generar otros numeros o ir al inicio en este caso daremos en guardar el cual tambien despliega un mensaje de confirmacion en la parte inferior de la ventana.
+
 ![enter image description here](https://github.com/elalo4171/simulacionF/blob/master/images/numerosGuardados.png)
+
 4.- Hacemos la prueba de corridas
 -
 - Seleccionamos los numeros en los cuales queremos hacer la prueba en este caso los almacenados en memoria
+
 ![](https://github.com/elalo4171/simulacionF/blob/master/images/corridas.png)
+
 - Nos dira si paso o no la prueba 
+
 ![](https://github.com/elalo4171/simulacionF/blob/master/images/resultadosCorridas.png)
 
 5.- Hacemos el proceso con Kolmogorov 
 -
 Nos regresara si paso o no la prueba 
+
 ![](https://github.com/elalo4171/simulacionF/blob/master/images/kolmo.png)
 
 6.- Ejecutamos el proceso de Ajuste de transformada inversa
 -
 Al dar Tap nos mostrara una lista con nuestros números aleatorios generados y la opcion de guardarlos en memoria, volver al menú o al incio
+
 ![](https://github.com/elalo4171/simulacionF/blob/master/images/resultadostransformada.png)
 
  
