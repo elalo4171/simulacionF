@@ -33,6 +33,7 @@ class _KolmogorovPageState extends State<KolmogorovPage> {
   @override
   Widget build(BuildContext context) {
     _generadorAleatorios = Provider.of<GeneradorAleatorios>(context);
+    getData(_generadorAleatorios);
     Responsive _responsive = new Responsive(context);
     TextStyle _title = new TextStyle(fontSize: _responsive.ip * .035);
     // getData(_generadorAleatorios);
