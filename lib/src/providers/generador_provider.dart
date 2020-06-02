@@ -358,10 +358,6 @@ class GeneradorAleatorios with ChangeNotifier {
         
     }
 
-<<<<<<< HEAD
-    bool _triangularInversa (List<double> list) {
-
-=======
  getTi(){
     return tiNormal(_numerosKolmogorov);
  }
@@ -389,7 +385,6 @@ class GeneradorAleatorios with ChangeNotifier {
          sum+=pow(numeros[i]-miu, 2);
        }
        return sum/numeros.length;
->>>>>>> 6c4aef06f9449192b539b18e0f887a10e7a2257d
     }
 
 
