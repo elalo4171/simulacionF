@@ -134,13 +134,13 @@ class _ShowNumerosState extends State<ShowNumeros> {
       ),
     );
   }
-  escribirArchivo(contexts){
+  escribirArchivo(contexts)async {
     List<int> temp = [];
     for (var i = 0; i < _numerosGenerados.length; i++)
       temp.add(_numerosGenerados[i].toInt());
     widget.storage.writeCounter(temp);
     final snackBar = SnackBar(
-      content: Text('Archivo creado', style: TextStyle(color: Colors.white)),
+      content: Text(await _localPath, style: TextStyle(color: Colors.white)),
       backgroundColor: Colors.green,
       action: SnackBarAction(
         label: 'OK',
