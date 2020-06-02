@@ -8,17 +8,22 @@ import 'package:simulacion/src/utility/responsive.dart';
 import 'package:simulacion/src/widgets/tittle_widget.dart';
 
 class CorridasArribaAbajo extends StatefulWidget {
-  CorridasArribaAbajo({Key key}) : super(key: key);
+  
+  final CounterStorage storage;
+  CorridasArribaAbajo({Key key, @required this.storage}) : super(key: key);
 
   @override
   _CorridasArribaAbajoState createState() => _CorridasArribaAbajoState();
 }
 
 class _CorridasArribaAbajoState extends State<CorridasArribaAbajo> {
+    List<int> numerosArchivo=[];
+    List<double> numerosAcrhivoDouble=[];
   @override
   Widget build(BuildContext context) {
     Responsive _responsive = new Responsive(context);
     List<double> numerosSeleccionados=[];
+    traerNumeros();
     final generador = Provider.of<GeneradorAleatorios>(context);
     return Scaffold(
        body: SafeArea(
@@ -49,6 +54,11 @@ class _CorridasArribaAbajoState extends State<CorridasArribaAbajo> {
     );
   }
 
+  void traerNumeros() async{
+    numerosArchivo = await widget.storage.readCounter();
+
+  }
+
   List<DropdownMenuItem> opciones(GeneradorAleatorios generadorAleatorios){
     List<DropdownMenuItem<List<double>>> items=[];
     if(generadorAleatorios.numerosAleatoriosAdictivo.length!=0){
@@ -59,6 +69,12 @@ class _CorridasArribaAbajoState extends State<CorridasArribaAbajo> {
     }
     if(generadorAleatorios.numerosAleatoriosMixto.length!=0){
       items.add(DropdownMenuItem(child: Text("Aleatorios Mixto(Generados)"),value: generadorAleatorios.numerosAleatoriosMixto,));
+    }
+    if(numerosArchivo.length!=0){
+      for (int i = 0; i < numerosArchivo.length; i ++){
+        numerosAcrhivoDouble[i] = numerosArchivo[i].toDouble();
+      }
+      items.add(DropdownMenuItem(child: Text("Numeros en archivo"),value: numerosAcrhivoDouble,));
     }
     //Archivos
 
