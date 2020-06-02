@@ -209,7 +209,10 @@ class GeneradorAleatorios with ChangeNotifier {
     return file;
   }
 
-List<List<double>> ks=[
+
+List<double> _alfa=[0.10,0.05,0.01];
+List<int> _size=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,25,30,35,40,50,60,70,80,90,100];
+List<List<double>> _ks=[
         [0.950,0.975,0.995],
         [0.776,0.842,0.929],
         [0.642,0.975,0.995],
@@ -243,6 +246,89 @@ List<List<double>> ks=[
         [0.000,0.134,0.000],
 ];
 
+  kolmo(double alfa, int size){
+    int posx=0, posy=0;
+    double estadistico=0;
+
+    if(size<=100){
+      for (int i = 0; i < _alfa.length; i++) {
+                if (_alfa[i] == alfa) {
+                    posx = i;
+                }
+            }
+            for (int i = 0; i < _size.length; i++) {
+                if (_size[i] == size) {
+                    posy = i;
+                }
+            }
+            if (posx == 0 || posy == 0) {
+                estadistico = -1;
+            }
+            estadistico =  _ks[posx][posy];
+    }else{
+       if(alfa == 0.1){
+                estadistico = (1.22/sqrt(size));
+            }
+            if(alfa == 0.05){
+                estadistico = (1.36/sqrt(size));
+            }
+            if(alfa == 0.01){
+                estadistico = (1.63/sqrt(size));
+            }
+
+    }
+    return estadistico;
+
+  }
+
+        pruebaKolmogorov(List<double > numeros){
+        List vect;
+        List dM,d;
+        double Xi=0,j=1;
+         double mayor;
+        vect = List();
+        dM= List();
+        d = List();
+        for (int i = 0; i < numeros.length; i++) {
+            vect[i] = numeros[i];
+             
+        }
+        vect.sort();
+        for (int i = 0; i < vect.length; i++) {
+            
+            Xi= vect[i];
+            double aux= j/vect.length;
+            dM[i] = (aux)-Xi;
+            d[i] = Xi-((j-1)/vect.length);
+            j++;
+        }
+        
+        double mayorD,mayord;
+        mayorD=dM[0];
+        mayord=d[0];
+        for(int i=0;i<dM.length;i++){
+            if(dM[i] > mayorD){
+                mayorD= dM[i];
+            }
+        }
+        for(int i=0;i<d.length;i++){
+            if(d[i] > mayord){
+                mayord = d[i];
+            }
+        }
+        
+        if(mayorD>mayord){
+            mayor = mayorD;
+        }else{
+            mayor = mayord;
+        }
+        double dnHipotesis = 1.36/sqrt(vect.length);
+        if(mayor<=dnHipotesis){
+         return "Prueba de Kolmogorov: Se acepta la hipotesis de que los numeros tienen una distribucion uniforme";
+        }else
+            return ("Prueba de Kolmogorov: Se rechaza la hipotesis de que los numeros tienen una distribucion uniforme");
+        
+    }
 
 
 }
