@@ -25,7 +25,7 @@ class _KolmogorovPageState extends State<KolmogorovPage> {
     if (_resulBool) {
       _resul = "Prueba de Kolmogorov: Se acepta la hipotesis de que los numeros tienen una distribucion uniforme";
     } else {
-      _resul = "Prueba de Kolmogorov: Se rechaza la hipotesis de que los numeros tienen una distribucion uniforme \n Se tiene que hacer la prueba de aceptacion y rechazo";
+      _resul = "Prueba de Kolmogorov: Se rechaza la hipotesis de que los numeros tienen una distribucion uniforme \n Se tiene que hacer el ajuste de aceptacion y rechazo";
     }
     setState(() {});
   }
@@ -67,7 +67,8 @@ class _KolmogorovPageState extends State<KolmogorovPage> {
                           borderRadius: BorderRadius.circular(18.0),
                         ),
                         onPressed: () {
-                          // Navigator.pushNamed(context, 'ver');
+                          _generadorAleatorios.metodoSeleccionado=4;
+                          Navigator.pushNamed(context, 'ver');
                         },
                       ),
                     ):Container(),

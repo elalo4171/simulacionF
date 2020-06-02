@@ -59,7 +59,7 @@ class HomePage extends StatelessWidget {
               SizedBox(
                 height: _responsive.height * .02,
               ),
-              subtitle("Prueba de independencia", _responsive),
+              subtitle("Verificar numeros", _responsive),
               Container(
                 padding:
                     EdgeInsets.symmetric(vertical: _responsive.height * .03),
@@ -67,7 +67,7 @@ class HomePage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     cardCustom(
-                        "Corridas arriba y abajo",
+                        "Bondad y ajuste",
                         "ESTE ES EL CONTENIDO",
                         'corridas',
                         Colors.cyan,
