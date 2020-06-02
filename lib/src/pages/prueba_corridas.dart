@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:simulacion/src/providers/generador_provider.dart';
 import 'package:simulacion/src/utility/responsive.dart';
@@ -54,11 +57,55 @@ class _CorridasArribaAbajoState extends State<CorridasArribaAbajo> {
     if(generadorAleatorios.numerosAleatoriosMultiplicativo.length!=0){
       items.add(DropdownMenuItem(child: Text("Aleatorios Multiplicativo(Generados)"),value: generadorAleatorios.numerosAleatoriosMultiplicativo,));
     }
+    if(generadorAleatorios.numerosAleatoriosMixto.length!=0){
+      items.add(DropdownMenuItem(child: Text("Aleatorios Mixto(Generados)"),value: generadorAleatorios.numerosAleatoriosMixto,));
+    }
     //Archivos
 
 
 
     return items;
   }
+  
+  Future<String> get _localPath async {
+    final directory = await getApplicationDocumentsDirectory();
+    
+    return directory.path;
+  }
 
+
+}
+
+class CounterStorage {
+  Future<String> get _localPath async {
+    final directory = await getApplicationDocumentsDirectory();
+
+    return directory.path;
+  }
+
+  Future<File> get _localFile async {
+    final path = await _localPath;
+    return File('$path/counter.txt');
+  }
+
+  Future<List<int>> readCounter() async {
+    try {
+      final file = await _localFile;
+
+      // Leer archivo
+      List<int> contents = await file.readAsBytes();
+
+      return contents;
+    } catch (e) {
+      // Si encuentras un error, regresamos 0
+      return null;
+    }
+  }
+
+  Future<File> writeCounter(List<int> counter) async {
+    final file = await _localFile;
+
+    // Escribir archivo
+    return file.writeAsBytes(counter);
+  }
 }
