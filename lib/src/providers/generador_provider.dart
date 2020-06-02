@@ -143,6 +143,7 @@ class GeneradorAleatorios with ChangeNotifier {
         }
         if (veces >= 2) return j - i;
       }
+      veces=0;
     }
     return 0;
   }
