@@ -53,6 +53,11 @@ class _ShowNumerosState extends State<ShowNumeros> {
         _numerosGenerados = info.numerosAleatoriosMixto;
         _periodo = info.repeticion(info.numerosAleatoriosMixto).toString();
         break;
+        case 4:
+        _metodo = "Ajuste";
+        _numerosGenerados = info.getTi();
+        _periodo= info.repeticion(_numerosGenerados).toString();
+        break;
       default:
     }
   }
@@ -75,12 +80,12 @@ class _ShowNumerosState extends State<ShowNumeros> {
                     SizedBox(
                       height: _responsive.height * .02,
                     ),
-                    title("Numeros Generados", _metodo,
+                    title(_metodo!='Ajuste'? "Numeros Generados":"Ajuste Transformada Inversa", _metodo,
                         TextStyle(fontSize: _responsive.ip * .035), _responsive),
-                    ListTile(
+                    _periodo!='n'?ListTile(
                       title: Text("Periodo de repeticion"),
                       subtitle: Text(_periodo),
-                    ),
+                    ):Container(),
                     Center(
                       child: Text("Numeros:"),
                     ),
@@ -113,10 +118,12 @@ class _ShowNumerosState extends State<ShowNumeros> {
                             ),
                           ),
                           RaisedButton(
-                            child: Text("Generar otros numeros", style: TextStyle(color: Colors.black),),
+                            child: Text(_metodo!='Ajuste'?"Generar otros numeros":"Volver al menu", style: TextStyle(color: Colors.black),),
                             color: Colors.white,
                             onPressed: () {
-                              Navigator.pop(context);
+                              _metodo!='Ajuste'?
+                              Navigator.pop(context):
+                              Navigator.pushNamedAndRemoveUntil(context, 'home', (route) => false);
                             },
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(18.0),

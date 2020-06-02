@@ -67,7 +67,7 @@ class HomePage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     cardCustom(
-                        "Corridas arriba y abajo",
+                        "Bondad y ajuste",
                         "ESTE ES EL CONTENIDO",
                         'corridas',
                         Colors.cyan,
