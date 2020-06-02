@@ -42,7 +42,9 @@ class _CorridasArribaAbajoState extends State<CorridasArribaAbajo> {
            children: <Widget>[
              ListView(
                children: <Widget>[
-                 Container(
+                Column(
+                  children: <Widget>[
+                     Container(
                   height: _responsive.height * .1,
                   padding: EdgeInsets.only(
                       top: _responsive.height * .02,
@@ -65,8 +67,29 @@ class _CorridasArribaAbajoState extends State<CorridasArribaAbajo> {
                 numerosSeleccionados.length!=0?
                 ListTile(
                   title: Text("Resultados de la prueba"),
-                  subtitle: Text(generador.corridasArribaAbajo(numerosSeleccionados)),
-                ):Container()
+                  subtitle: Text(generador.corridasArribaAbajo(numerosSeleccionados)?"No se rechaza que son independientes. ":"No Pasa la prueba de corridas"),
+                ):Container(),
+                numerosSeleccionados.length!=0?
+                Container(
+                      width: _responsive.width * .5,
+                      child: RaisedButton(
+                        color: Colors.white,
+                        child: Text(
+                          "Ir a Kolmogorov",
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        splashColor: Colors.grey,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(18.0),
+                        ),
+                        onPressed: () {
+                          generador.numerosKolmogorov=numerosSeleccionados;
+                          Navigator.pushNamed(context, 'kolmo');
+                        },
+                      ),
+                    ):Container(),
+                  ],
+                )
                ],
              )
            ],

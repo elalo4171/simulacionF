@@ -193,9 +193,11 @@ class GeneradorAleatorios with ChangeNotifier {
     zn = Normal.quantile(1 - alfa / 2);
 
     if (z < zn) {
-      return ("No se rechaza que son independientes. ");
+      return true;
+      // ("No se rechaza que son independientes. ");
     } else {
-      return ("No Pasa la prueba de corridas");
+      return false;
+      // ("No Pasa la prueba de corridas");
     }
   }
 
@@ -314,7 +316,7 @@ class GeneradorAleatorios with ChangeNotifier {
         dM= List();
         d = List();
         for (int i = 0; i < numeros.length; i++) {
-            vect[i] = numeros[i];
+            vect.add(numeros[i]);
              
         }
         vect.sort();
@@ -322,8 +324,8 @@ class GeneradorAleatorios with ChangeNotifier {
             
             Xi= vect[i];
             double aux= j/vect.length;
-            dM[i] = (aux)-Xi;
-            d[i] = Xi-((j-1)/vect.length);
+            dM.add((aux)-Xi);
+            d.add(Xi-((j-1)/vect.length));
             j++;
         }
         
