@@ -358,5 +358,9 @@ class GeneradorAleatorios with ChangeNotifier {
         
     }
 
+    bool _triangularInversa (List<double> list) {
+
+    }
+
 
 }
