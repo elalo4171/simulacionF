@@ -8,7 +8,7 @@ import 'package:simulacion/src/pages/prueba_corridas.dart';
 import 'package:simulacion/src/pages/show_numeros.dart';
 import 'package:simulacion/src/providers/generador_provider.dart';
 import 'package:simulacion/src/theme/tema.dart';
-
+import 'package:simulacion/src/pages/kolmogorov_page.dart';
 void main() => runApp(MyApp());
  
 class MyApp extends StatelessWidget {
@@ -29,8 +29,9 @@ class MyApp extends StatelessWidget {
           'multiplicativo':(BuildContext context)=>Multiplicativo(),
           'mixto': (BuildContext context) => Mixto(),
           'corridas':(BuildContext context)=>CorridasArribaAbajo(),
+          'kolmo':(BuildContext context)=>KolmogorovPage()
         },
-        initialRoute: 'home',
+        initialRoute: 'kolmo',
         theme: miTema,
         debugShowCheckedModeBanner: false,
       ),
